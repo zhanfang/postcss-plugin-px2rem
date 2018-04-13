@@ -1,6 +1,6 @@
 {
-  "name": "postcss-plugin-px2rem",
-  "version": "0.7.0",
+  "name": "postcss-plugin-pr2rem",
+  "version": "0.1.1",
   "description": "A plugin for PostCSS that generates rem units from multi units.",
   "main": "index.js",
   "scripts": {
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ant-tool/postcss-plugin-px2rem.git"
+    "url": "https://github.com/zhanfang/postcss-plugin-px2rem.git"
   },
   "keywords": [
     "px",
@@ -20,12 +20,12 @@
     "postcss",
     "plugin"
   ],
-  "author": "pigcan <jiangjay818@gmail.com>",
+  "author": "zhanfang <fzhanxd8@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ant-tool/postcss-plugin-px2rem/issues"
+    "url": "https://github.com/zhanfang/postcss-plugin-px2rem/issues"
   },
-  "homepage": "https://github.com/ant-tool/postcss-plugin-px2rem#readme",
+  "homepage": "https://github.com/zhanfang/postcss-plugin-px2rem#readme",
   "dependencies": {
     "postcss": "^5.0.21"
   },

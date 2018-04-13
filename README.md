@@ -1,12 +1,12 @@
-# postcss-plugin-px2rem
+# postcss-plugin-pr2rem
 
-[![NPM version](https://img.shields.io/npm/v/postcss-plugin-px2rem.svg?style=flat)](https://npmjs.org/package/postcss-plugin-px2rem)
-[![Build Status](https://img.shields.io/travis/ant-tool/postcss-plugin-px2rem.svg?style=flat)](https://travis-ci.org/ant-tool/postcss-plugin-px2rem)
-[![Coverage Status](https://img.shields.io/coveralls/ant-tool/postcss-plugin-px2rem.svg?style=flat)](https://coveralls.io/r/ant-tool/postcss-plugin-px2rem)
-[![NPM downloads](http://img.shields.io/npm/dm/postcss-plugin-px2rem.svg?style=flat)](https://npmjs.org/package/postcss-plugin-px2rem)
-[![Dependency Status](https://david-dm.org/ant-tool/postcss-plugin-px2rem.svg)](https://david-dm.org/ant-tool/postcss-plugin-px2rem)
+[![NPM version](https://img.shields.io/npm/v/postcss-plugin-px2rem.svg?style=flat)](https://npmjs.org/package/postcss-plugin-pr2rem)
+[![Build Status](https://img.shields.io/travis/ant-tool/postcss-plugin-px2rem.svg?style=flat)](https://travis-ci.org/ant-tool/postcss-plugin-pr2rem)
+[![Coverage Status](https://img.shields.io/coveralls/ant-tool/postcss-plugin-px2rem.svg?style=flat)](https://coveralls.io/r/ant-tool/postcss-plugin-pr2rem)
+[![NPM downloads](http://img.shields.io/npm/dm/postcss-plugin-px2rem.svg?style=flat)](https://npmjs.org/package/postcss-plugin-pr2rem)
+[![Dependency Status](https://david-dm.org/ant-tool/postcss-plugin-px2rem.svg)](https://david-dm.org/ant-tool/postcss-plugin-pr2rem)
 
-postcss plugin px2rem.
+postcss plugin pr2rem.
 
 <img align="right" width="135" height="95"
      title="Philosopher’s stone, logo of PostCSS"
@@ -19,7 +19,7 @@ A plugin for PostCSS that generates rem units from pixel units.
 ## Installation
 
 ```bash
-$ npm i --save postcss-plugin-px2rem
+$ npm i --save postcss-plugin-pr2rem
 ```
 
 ## Usage
@@ -29,15 +29,15 @@ $ npm i --save postcss-plugin-px2rem
 ```css
 // input
 h1 {
-  margin: 0 0 20px;
-  font-size: 32px;
+  margin: 0 10px 0 20pr;
+  font-size: 32pr;
   line-height: 1.2;
   letter-spacing: 1px;
 }
 
 // output
 h1 {
-  margin: 0 0 0.2rem;
+  margin: 0 10px 0 0.2rem;
   font-size: 0.32rem;
   line-height: 1.2;
   letter-spacing: 0.01rem;
@@ -63,42 +63,28 @@ writeFile('/path/to/test.rem.css', processedCss, err => {
 });
 ```
 
-### with webpack
+## postcss.config.js
+```js
+const px2rem = require('postcss-plugin-px2rem');
 
-```javascript
-import px2rem from 'postcss-plugin-px2rem';
-const px2remOpts = {
-  ......
+const px2remConfig = {
+    // 设计图为1242px
+    rootValue: 62.1,
+    unitPrecision: 5,
+    propWhiteList: [],
+    propBlackList: ['font-size'],
+    selectorBlackList: [],
+    ignoreIdentifier: '00',
+    replace: true,
+    mediaQuery: false,
+    minPixelValue: 0
 };
- 
-export default {
-  module: {
-    loaders: [
-      {
-        test: /\.css$/,
-        loader: 'style-loader!css-loader!postcss-loader',
-      },
-    ],
-  },
-  postcss: [px2rem(px2remOpts)],
-}
-```
 
-### with [atool-build](https://github.com/ant-tool/atool-build)
 
-`webpack.connfig.js`
-
-```javascript
-import webpack from 'atool-build/lib/webpack';
-import px2rem from 'postcss-plugin-px2rem';
-
-export default webpackConfig => {
-  const px2remOpts = {
-    ......
-  };
-  webpackConfig.postcss.push(px2rem(px2remOpts));
-
-  return webpackConfig;
+module.exports = {
+    plugins: [
+        px2rem(px2remConfig)
+    ]
 };
 ```
 
@@ -140,3 +126,6 @@ Default:
 
 ### License
 MIT
+
+### THANKS
+ant-tool/postcss-plugin-px2rem

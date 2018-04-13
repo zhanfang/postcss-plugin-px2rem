@@ -68,9 +68,9 @@ const handleIgnoreIdentifierRegx = (identifier, unit) => {
   return new RegExp(pattern, 'ig');
 };
 
-export default postcss.plugin('postcss-plugin-px2rem', options => {
+export default postcss.plugin('postcss-plugin-pr2rem', options => {
   const opts = { ...defaultOpts, ...options };
-  let unit = 'px';
+  let unit = 'pr';
   if (isObject(opts.rootValue)) {
     unit = Object.keys(opts.rootValue).join('|');
   }
@@ -91,7 +91,7 @@ export default postcss.plugin('postcss-plugin-px2rem', options => {
     css.walkDecls((decl, i) => {
       const _decl = decl;
       // 1st check 'px'
-      if (_decl.value.indexOf('px') === -1) return;
+      if (_decl.value.indexOf('pr') === -1) return;
       // 2nd check property black list
       if (blacklistedProp(opts.propBlackList, _decl.prop)) return;
       // 3rd check property white list
@@ -116,7 +116,7 @@ export default postcss.plugin('postcss-plugin-px2rem', options => {
     if (opts.mediaQuery) {
       css.walkAtRules('media', rule => {
         const _rule = rule;
-        if (_rule.params.indexOf('px') === -1) return;
+        if (_rule.params.indexOf('pr') === -1) return;
         _rule.params = _rule.params.replace(pxRegex, pxReplace);
       });
     }
