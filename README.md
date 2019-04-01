@@ -49,13 +49,13 @@ h1 {
 ```javascript
 import { writeFile, readFileSync } from 'fs';
 import postcss from 'postcss';
-import pxtorem from 'postcss-plugin-px2rem';
+import prtorem from 'postcss-plugin-pr2rem';
 
 const css = readFileSync('/path/to/test.css', 'utf8');
 const options = {
   replace: false,
 };
-const processedCss = postcss(pxtorem(options)).process(css).css;
+const processedCss = postcss(prtorem(options)).process(css).css;
 
 writeFile('/path/to/test.rem.css', processedCss, err => {
   if (err) throw err;
@@ -65,9 +65,9 @@ writeFile('/path/to/test.rem.css', processedCss, err => {
 
 ## postcss.config.js
 ```js
-const px2rem = require('postcss-plugin-px2rem');
+const pr2rem = require('postcss-plugin-pr2rem');
 
-const px2remConfig = {
+const pr2remConfig = {
     // 设计图为1242px
     rootValue: 62.1,
     unitPrecision: 5,
@@ -83,7 +83,7 @@ const px2remConfig = {
 
 module.exports = {
     plugins: [
-        px2rem(px2remConfig)
+        pr2rem(pr2remConfig)
     ]
 };
 ```
