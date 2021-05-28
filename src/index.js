@@ -91,7 +91,7 @@ export default postcss.plugin('postcss-plugin-pr2rem', options => {
     css.walkDecls((decl, i) => {
       const _decl = decl;
       // 1st check 'px'
-      if (_decl.value.indexOf('pr') === -1) return;
+      if(!new RegExp(unit, 'ig').test(_decl.value)) return;
       // 2nd check property black list
       if (blacklistedProp(opts.propBlackList, _decl.prop)) return;
       // 3rd check property white list
